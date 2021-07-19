@@ -1,8 +1,9 @@
-// HPSDRProgrammer_web program
+// TangerineSDR Programmer web program
 //
 // by David R. Larsen, copyright December 19, 2015
 // License LGPL 2.0
-// Part of the OpenHPSDR Software Defined Radio Project (openhpsdr.org)
+// Part of the TangerineSDR Software Defined Radio Project (tangerinesdr.com)
+// Based on my code from the openHPSDR web programmer.
 //
 package main
 
@@ -15,8 +16,6 @@ import (
 	"runtime"
 	"text/template"
 	//"golang.org/x/net/websocket"
-	//"oak.snr.missouri.edu/daveradio/newopenhpsdr"
-	//"newopenhpsdr"
 )
 
 // Server address and port
@@ -275,7 +274,6 @@ type Html struct {
 // 		log.Printf("            Status: %s\n", str.Status)
 // 	}
 // }
-
 
 // Web handler function to produce the intro webpage
 func introhandler(w http.ResponseWriter, r *http.Request) {
@@ -866,9 +864,9 @@ func introhandler(w http.ResponseWriter, r *http.Request) {
 // }
 
 // // Web handler function to stop the webserver.
-// func closehandler(w http.ResponseWriter, r *http.Request) {
-// 	log.Fatal("Program shut down by user!")
-// }
+func closehandler(w http.ResponseWriter, r *http.Request) {
+	log.Fatal("Program shut down by user!")
+}
 
 // func changediphandler(w http.ResponseWriter, r *http.Request) {
 // 	log.Println("Served Changed IP Interface page.")
@@ -1395,7 +1393,7 @@ func main() {
 	// http.HandleFunc("/setip/", setiphandler)
 	// http.HandleFunc("/changedip/", changediphandler)
 	// http.HandleFunc("/closescreen/", closescreenhandler)
-	// http.HandleFunc("/close/", closehandler)
+	http.HandleFunc("/close/", closehandler)
 	// http.HandleFunc("/nosite/", nositehandler)
 	// http.Handle("/counter/", websocket.Handler(sensorhandler))
 	// http.HandleFunc("/count/", counthandler)
