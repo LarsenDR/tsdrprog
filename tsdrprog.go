@@ -821,47 +821,47 @@ func introhandler(w http.ResponseWriter, r *http.Request) {
 // 	fmt.Fprintf(w, "</html>\n")
 // }
 
-// // Web handler function to produce the quit warning web page.
-// func closescreenhandler(w http.ResponseWriter, r *http.Request) {
-// 	log.Println("Served Close screen Interface page.")
-// 	var H Html
-// 	H.Version = version
-// 	H.Protocol = protocol
-// 	H.Update = update
-// 	H.Address = srvaddress
-// 	H.Port = srvport
+// Web handler function to produce the quit warning web page.
+func closescreenhandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Served Close screen Interface page.")
+	var H Html
+	H.Version = version
+	H.Protocol = protocol
+	H.Update = update
+	H.Address = srvaddress
+	H.Port = srvport
 
-// 	r.ParseForm()
+	r.ParseForm()
 
-// 	t, _ := template.New("head").Parse(w1p)
-// 	t.Execute(w, "head")
+	t, _ := template.New("head").Parse(w1p)
+	t.Execute(w, "head")
 
-// 	t1, _ := template.New("style").Parse(w1style)
-// 	t1.Execute(w, "style")
+	t1, _ := template.New("style").Parse(w1style)
+	t1.Execute(w, "style")
 
-// 	t2, _ := template.New("webbanner").Parse(banner)
-// 	t2.Execute(w, H)
+	t2, _ := template.New("webbanner").Parse(banner)
+	t2.Execute(w, H)
 
-// 	t3, _ := template.New("body").Parse(w2p)
-// 	t3.Execute(w, "body")
+	t3, _ := template.New("body").Parse(w2p)
+	t3.Execute(w, "body")
 
-// 	fmt.Fprintf(w, "<h1>Shutting down the HPSDRProgrammer!</h1> <p> Please select the Quit or Return</p>")
-// 	fmt.Fprintf(w, "<table>")
-// 	fmt.Fprintf(w, "<tr><td>")
-// 	fmt.Fprintf(w, "<form method=\"link\" action=\"/nic/\" >")
-// 	fmt.Fprintf(w, "<button class=\"btn\" type=\"submit\" name=\"nic\" value=\"nic\"> Return</button>")
-// 	fmt.Fprintf(w, "</form>")
-// 	fmt.Fprintf(w, "</td>")
-// 	fmt.Fprintf(w, "<td>")
-// 	fmt.Fprintf(w, "<form method=\"link\" action=\"/close/\" >")
-// 	fmt.Fprintf(w, "<button class=\"btn\" type=\"submit\" name=\"quit\" value=\"quit\"> Quit</button>")
-// 	fmt.Fprintf(w, "</form>")
-// 	fmt.Fprintf(w, "</td></tr>")
-// 	fmt.Fprintf(w, "</table>")
+	fmt.Fprintf(w, "<h1>Shutting down the HPSDRProgrammer!</h1> <p> Please select the Quit or Return</p>")
+	fmt.Fprintf(w, "<table>")
+	fmt.Fprintf(w, "<tr><td>")
+	fmt.Fprintf(w, "<form method=\"link\" action=\"/nic/\" >")
+	fmt.Fprintf(w, "<button class=\"btn\" type=\"submit\" name=\"nic\" value=\"nic\"> Return</button>")
+	fmt.Fprintf(w, "</form>")
+	fmt.Fprintf(w, "</td>")
+	fmt.Fprintf(w, "<td>")
+	fmt.Fprintf(w, "<form method=\"link\" action=\"/close/\" >")
+	fmt.Fprintf(w, "<button class=\"btn\" type=\"submit\" name=\"quit\" value=\"quit\"> Quit</button>")
+	fmt.Fprintf(w, "</form>")
+	fmt.Fprintf(w, "</td></tr>")
+	fmt.Fprintf(w, "</table>")
 
-// 	fmt.Fprintf(w, "</body>\n")
-// 	fmt.Fprintf(w, "</html>\n")
-// }
+	fmt.Fprintf(w, "</body>\n")
+	fmt.Fprintf(w, "</html>\n")
+}
 
 // // Web handler function to stop the webserver.
 func closehandler(w http.ResponseWriter, r *http.Request) {
@@ -1392,7 +1392,7 @@ func main() {
 	// http.HandleFunc("/board/", boardhandler)
 	// http.HandleFunc("/setip/", setiphandler)
 	// http.HandleFunc("/changedip/", changediphandler)
-	// http.HandleFunc("/closescreen/", closescreenhandler)
+	http.HandleFunc("/closescreen/", closescreenhandler)
 	http.HandleFunc("/close/", closehandler)
 	// http.HandleFunc("/nosite/", nositehandler)
 	// http.Handle("/counter/", websocket.Handler(sensorhandler))
